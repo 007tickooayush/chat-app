@@ -6,19 +6,19 @@ import { auth, database } from '../misc/firebase';
 const SignIn = () => {
   const signInwithProvider = async provider => {
     try {
-      const {additionalUserInfo,user}= await auth.signInWithPopup(provider);
+      const { additionalUserInfo, user } = await auth.signInWithPopup(provider);
       // console.log(result);
 
-      if(additionalUserInfo.isNewUser){
+      if (additionalUserInfo.isNewUser) {
         await database.ref(`/profiles/${user.uid}`).set({
-          name:user.displayName,
-          createdAt:firebase.database.ServerValue.TIMESTAMP,
-        })
+          name: user.displayName,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+        });
       }
 
-      Alert.success('Signed In',4300);
+      Alert.success('Signed In', 4300);
     } catch (err) {
-      Alert.error(err.message,4300);
+      Alert.error(err.message, 4300);
     }
   };
 
