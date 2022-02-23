@@ -19,17 +19,19 @@ export const ProfileProvider = ({ children }) => {
                 userRef = database.ref(`/profiles/${authObj.uid}`);
 
                 userRef.on('value', snapshot => {
+                    // log entire snapshot
                     // console.log('snapshot', snapshot);
 
                     const { name, createdAt } = snapshot.val();
-                    // console.log('profData', profData);
-
+                    
                     const profileData = {
                         name,
                         createdAt,
                         uid: authObj.uid,
                         email: authObj.email,
                     };
+                    // log profileData
+                    // console.log('profileData', profileData);
 
                     setProfile(profileData);
                     setIsLoading(false);
