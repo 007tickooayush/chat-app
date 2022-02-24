@@ -1,20 +1,18 @@
-import React from 'react'
+import React from 'react';
+import CreateRoomBtnModal from './CreateRoomBtnModal';
 import DashboardToggle from './dashboard/DashboardToggle';
 
 const Sidebar = () => {
   return (
-    <div className='h-100 pt-2'>
-        
-        <div>
-            <DashboardToggle/>
-        </div>
+    <div className="h-100 pt-2">
+      <div>
+        <DashboardToggle />
+        <CreateRoomBtnModal/>
+      </div>
 
-        <div>
-            bottom
-        </div>
-
+      <div>bottom</div>
     </div>
-  )
-}
+  );
+};
 
 export default Sidebar;
