@@ -22,11 +22,12 @@ export const ProfileProvider = ({ children }) => {
                     // log entire snapshot
                     // console.log('snapshot', snapshot);
 
-                    const { name, createdAt } = snapshot.val();
+                    const { name, createdAt,avatar } = snapshot.val();
                     
                     const profileData = {
                         name,
                         createdAt,
+                        avatar,
                         uid: authObj.uid,
                         email: authObj.email,
                     };
