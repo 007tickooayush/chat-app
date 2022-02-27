@@ -52,7 +52,8 @@ export const ProfileProvider = ({ children }) => {
         });
 
         database.ref('.info/connected').on('value', snapshot => {
-          if (snapshot.val() === false) {
+            // using couble negation to convert into a boolean
+          if (!!snapshot.val() === false) {
             return;
           }
           userStatusRef
