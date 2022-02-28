@@ -16,6 +16,10 @@ export function transformToArrWithId(snapVal) {
     : [];
 }
 
+export function transformToArr(snapVal) {
+  return snapVal ? Object.keys(snapVal) : [];
+}
+
 export async function getUserUpdates(userId, keyToUpdate, value, db) {
   const updates = {};
   updates[`/profiles/${userId}/${keyToUpdate}`] = value;
@@ -31,17 +35,15 @@ export async function getUserUpdates(userId, keyToUpdate, value, db) {
     .equalTo(userId)
     .once('value');
 
-    const [mSnap,rSnap] = await Promise.all([getMsgs,getUserRooms]);
+  const [mSnap, rSnap] = await Promise.all([getMsgs, getUserRooms]);
 
-    mSnap.forEach(mSnp => {
-      updates[`/messages/${mSnp.key}/author/${keyToUpdate}`] = value;
-      
-    });
+  mSnap.forEach(mSnp => {
+    updates[`/messages/${mSnp.key}/author/${keyToUpdate}`] = value;
+  });
 
-    rSnap.forEach(rSnp => {
-      updates[`/rooms/${rSnp.key}/lastMessage/author/${keyToUpdate}`] = value;
-      
-    });
+  rSnap.forEach(rSnp => {
+    updates[`/rooms/${rSnp.key}/lastMessage/author/${keyToUpdate}`] = value;
+  });
 
-    return updates;
+  return updates;
 }
