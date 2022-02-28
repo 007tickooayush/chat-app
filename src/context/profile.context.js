@@ -25,9 +25,9 @@ export const ProfileProvider = ({ children }) => {
     let userStatusRef;
 
     const authOnSub = auth.onAuthStateChanged(authObj => {
-      //   console.log('authObj',authObj)
-
       if (authObj) {
+        console.log('authObj.uid', authObj.uid);
+
         userStatusRef = database.ref(`/status/${authObj.uid}`);
         userRef = database.ref(`/profiles/${authObj.uid}`);
 
@@ -52,7 +52,7 @@ export const ProfileProvider = ({ children }) => {
         });
 
         database.ref('.info/connected').on('value', snapshot => {
-            // using couble negation to convert into a boolean
+          // using couble negation to convert into a boolean
           if (!!snapshot.val() === false) {
             return;
           }
@@ -90,7 +90,6 @@ export const ProfileProvider = ({ children }) => {
       }
 
       database.ref('.info/connected').off();
-
     };
   }, []);
 

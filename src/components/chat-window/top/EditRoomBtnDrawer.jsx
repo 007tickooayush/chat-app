@@ -8,8 +8,9 @@ import EditableInput from '../../EditableInput';
 
 const EditRoomBtnDrawer = () => {
   const { isOpen, open, close } = useModalState();
-  const { name } = useCurrentRoom(v => v.name);
-  const { description } = useCurrentRoom(v => v.description);
+
+  const name = useCurrentRoom(v => v.name);
+  const description = useCurrentRoom(v => v.description);
 
   const isMobile = useMediaQuery('(max-width: 992px)');
 
@@ -53,10 +54,10 @@ const EditRoomBtnDrawer = () => {
             emptyMsg="Name cannot be empty"
           />
           <EditableInput
+            initialValue={description}
             componentClass="textarea"
             wrapperClassName="mt-3"
             rows={5}
-            initialValue={description}
             onSave={onDescriptionSave}
             emptyMsg="Description cannot be empty"
           />
