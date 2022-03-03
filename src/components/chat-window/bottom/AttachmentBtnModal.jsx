@@ -34,7 +34,7 @@ const AttachmentBtnModal = ({afterUpload}) => {
           });
       });
 
-      const uploadSnapshots = Promise.all(uploadPromises);
+      const uploadSnapshots = await Promise.all(uploadPromises);
 
       const shapePromises = uploadSnapshots.map(async snap => {
         return {
