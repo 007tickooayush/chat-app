@@ -15,6 +15,7 @@ function assembleMessage(profile, chatId) {
       ...(profile.avatar ? { avatar: profile.avatar } : {}),
     },
     createdAt: firebase.database.ServerValue.TIMESTAMP,
+    likeCount: 0,
   };
 }
 
@@ -24,11 +25,11 @@ const Bottom = () => {
 
   const { profile } = useProfile();
   const { chatId } = useParams();
-  
+
   const onInputChange = useCallback(value => {
     setInput(value);
   }, []);
-  
+
   const onSendClick = async () => {
     if (input.trim() === '') return;
 
@@ -57,13 +58,13 @@ const Bottom = () => {
       Alert.error(err.message, 4000);
     }
   };
-  
-  const onKeyDown =(ev) =>{
-    if(ev.keyCode === 13){
-      ev.preventDefault()
+
+  const onKeyDown = ev => {
+    if (ev.keyCode === 13) {
+      ev.preventDefault();
       onSendClick();
     }
-  }
+  };
 
   return (
     <div>
